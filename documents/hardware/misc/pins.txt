@@ -1,0 +1,52 @@
+[axessettingscontrolX]
+Steppinnumber=4
+Dirpinnumber=5
+Limitminuspinnumber=12
+Limitpluspinnumber=12
+Homepinnumber=12
+
+[axessettingscontrolY]
+Steppinnumber=6
+Dirpinnumber=7
+Limitminuspinnumber=13
+Limitpluspinnumber=13
+Homepinnumber=13
+
+[axessettingscontrolZ]
+Steppinnumber=2
+Dirpinnumber=3
+Limitpluspinnumber=12
+Homepinnumber=12
+
+[axessettingscontrolA]
+Steppinnumber=8
+Dirpinnumber=9
+Limitminuspinnumber=15
+Limitpluspinnumber=15
+Homepinnumber=15
+
+[IOsetupsettings]
+Estoppinnumber=10
+Probepinnumber=11
+
+The inputs are opto-isolated; they are active low at the controller, and this
+state is activated by pulling the input pin to ground. This applies to switches;
+the proximity sensors are active high at the controller.
+
+The opto inputs also require the +12v supply on the bob, don't work otherwise
+
+in the new config, the motion relay is moved from p1.17 to p1.2; it is now
+also active low instead of active high
+
+make sure that y and a turn in opposite directions, wiring or configuration!
+
+on the ucccnc eth300 board, p1 and p4 are bidirectional; p2, p3, and p5 are
+preconfigured for inputs
+
+testing p4.5 is step p4.4 is dir
+
+the switch documentation on the kl-5056 seems to be backwards, where up/down are
+not correctly represented. "down""on" appears to be a zero for the purposes
+of interpreting the diagram
+
+

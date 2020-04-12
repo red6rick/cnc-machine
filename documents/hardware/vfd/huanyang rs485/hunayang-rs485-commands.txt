@@ -1,0 +1,81 @@
+# Hunayang RS485 commands
+
+Hunayang inverters claim to be Modbus compatible - they are not :-(
+So here i try to create a nice list of all commands and their meaning.
+
+**I assume the use of the RTU mode.**
+
+## Parameter settings
+
+ - PD001: 2 (Source of run commands: communication port)
+ - PD002: 2 (Source of operating frequency: communication port)
+ - PD163: 1 (Communication address: 1)
+ - PD164: 1 (Communication Baud Rate: 9600)
+ - PD165: 3 (Communication Data Method: 8N1 RTU)
+
+## Functioncode 01 - Read function code data
+
+`slave address` `function code` `data length` `function data` `crc`
+
+If `function data` is 2 bytes, `data length` is `0x03`, if just 1 byte `0x02`
+
+**Unfortunately the complete manual says nothing about themeaning of `function data`, so i have no idea what this function really does**
+
+## Functioncode 02 - Write function code data
+
+`slave address` `function code` `data length` `function data` `crc`
+
+If `function data` is 2 bytes, `data length` is `0x03`, if just 1 byte `0x02`
+
+**Unfortunately the complete manual says nothing about themeaning of `function data`, so i have no idea what this function really does**
+
+## Functioncode 03 - Write control data
+
+`slave address` `function code` `data length` `control data` `crc`
+
+### Data to the VFD
+
+`0x01` `0x03` `0x01` `0x08` `0xF1` `0x8E`
+
+ - 0x01 = slave address
+ - 0x03 = function code
+ - 0x01 = request length
+ - 0x08 = stop
+ - 0xF1 0x8E = CRC16
+
+The manual says possible control data values are:
+
+ - 0 = run
+ - 1 = for
+ - 2 = rev
+ - 3 = stop
+ - 4 = r/f
+ - 5 = jog
+ - 6 = jogf
+ - 7 = jogr
+
+Its not entirely clear why 8 stops the VFD but maybe the possible options are bit positions in a byte rather than actual values.
+
+### Response from the VFD
+
+`0x01` `0x03` `0x01` `0x09` `0x30` `0x4E`
+
+ - 0x01 = slave address
+ - 0x03 = function code
+ - 0x01 = request length
+ - 0x09 = ??
+ - 0x30 0x4E = CRC16
+  
+The manual says possible control status responses are:
+
+ - 0 = run
+ - 1 = jog
+ - 2 = r/f
+ - 3 = running
+ - 4 = jogging
+ - 5 = r/f
+ - 6 = Braking
+ - 7 = Track start
+ 
+
+

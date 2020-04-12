@@ -1,0 +1,49 @@
+MY LATHE MOTOR INFO
+220V
+3.2 Full Load Amps (FLA)
+3.6 Service Factor Amps (SFA)
+1800RPM
+
+---------------------------------------------------------------------
+
+TERMINAL PINS
+
+PIN E	Ground
+PIN R	220V
+PIN S	220V
+
+PIN U	Motor Phase
+Pin V	Motor Phase
+PIN W	Motor Phase
+
+MODBUS PINS
+
+AMC (green)
+RS- (White)
+RS+ (Black)
+
+---------------------------------------------------------------------
+
+PROGRAM SETTINGS TO CHANGE
+
+PD001	2	Means Run Button on VFD Uses Comm Port
+PD002	2	Operating Freq Comes From Comm Port
+
+PD003	60	Main Frequency in Hz
+PD004	60	Base Frequency in Hz
+PD005	60	Max Frequency in Hz
+PD008	220	Max Voltage
+
+PD013	8	Restore factory default (BE CAREFUL WITH THIS)
+
+PD014	2	Acceleration Time in Seconds
+PD015	2	Deceleration Time in Seconds
+PD023	1	Enables Reverse Ability
+PD044	2	Switch Forward
+PD045	3	Switch Reverse
+
+PD141	230	Motor Voltage
+PD142	3.2	Motor AMPS
+PD143	4	Motor Number of Poles
+PD144	1800	Motor RPM (unless using pulley to change gear ratio)
+PD176	1	Inverter Frequency Standard to 60Hz (use 0 for 50Hz)
